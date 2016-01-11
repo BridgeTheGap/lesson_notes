@@ -10,3 +10,15 @@ Lesson 2
 					<h1 class = "article"> ... </h1> means "all h1 elements that belong to the class 'article' should have the following style."
 				- The HTML document can provide the browser with information about what CSS file to use and the location of the CSS file.
 	- In order to assign a style to an element, assign a class attribute.
+
+[CSS]
+	- Styles can be assigned by tags or classes.
+		- p { attribute: value} # This is for tags
+		- .class { attribute: value} # This is for classes
+		- * # Wildcard character, applying the style to all elements in HTML
+	- Attributes
+		- display # Changes the layout
+		- max-width # Values can be either percentage or px
+
+[Validation]
+	- Validate markups or css, to make sure they comply with the standards
