@@ -4,9 +4,9 @@ Lesson 2
 	HTML Tag	- The browser turns HTML tags into elements that form a tree (DOM). 
 				- Element = <tag> content </tag>
 				- The type/name of tag decides what element will be created.
-				- A tag can have attributes with values (e.g. <h1 class = "arcticle")
+				- A tag can have attributes with values (e.g. <h1 class = "article")
 				
 	CSS:		- Decides the style the page will be presented with.
-					<h1 class = "article"> ... </h1> means "all h1 elements that belong to  the class 'article' should have the following style."
+					<h1 class = "article"> ... </h1> means "all h1 elements that belong to the class 'article' should have the following style."
 				- The HTML document can provide the browser with information about what CSS file to use and the location of the CSS file.
-
+	- In order to assign a style to an element, assign a class attribute.
