@@ -1,0 +1,23 @@
+HTML Forms
+
+1. Form
+	Attributes
+	- action="URL": where the data should be sent
+
+2. Input
+	Attributes
+	- name="value": Makes a query by the given name, with the value which was inside the text field
+	- type="value": Make an input type
+		"text": Text field. Default parameter
+		"submit": Submit button
+		"password": Hides characters. Password is not sent securely. (Visible in the URL)
+		"checkbox": Sends "on" or removes the whole parameter including the name
+		"radio": Give the same name to grouped radio buttons to get desired behavior
+	- value="value": In conjunction with radio, this value is added to the name attribute
+
+3. Label
+	By nesting input in the "Label" tag, a label is added on the left side of the input element
+
+4. Select
+	- name="value"
+	- <option value="value">OptionName</option>: Shows OptionName in the drop-down, but submits "value"

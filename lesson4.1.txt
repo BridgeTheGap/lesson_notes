@@ -1,0 +1,72 @@
+1. HTML document structure
+	<!DOCTYPE HTML>		<!-- HTML is enough since HTML5 -->
+	<html>
+		<head>				<!-- This is where all the metadata takes place -->
+			<title>Title</title>
+			<!-- Other references such as Java Script or CSS is included here -->
+		</head>
+		<body>
+			<!-- This is the content part of the document -->
+		</body>
+	</html>
+
+
+2. URL (Uniform Resource Locator)
+	- URL 
+		# Example: http://www.udacity.com/
+			Protocol: "http"
+			Host/domain name/IP address: "www.udacity.com"
+			Path: "/"
+		Location(address) of the machine you are accessing
+
+	- Query parameters (GET parameters)
+		# Example: ?p=1
+			Name: "p"
+			Value: "1"
+		Query parameters can be chained through "&"
+
+	- Fragment
+		References a particular part of the page
+		Not sent to the server when making a request (just for browser)
+		Last component of a URL
+
+	- Port
+		# Example: http://localhost:8000/
+		Default is 80
+		Between the host and path
+
+3. HTTP (HyperText Transfer Protocol)
+	- Request line
+		# Example: GET /foo HTTP/1.1
+		Method: "GET", "POST", etc. (What type of request is made to the server)
+		Path: "/foo" (The document that is requested)
+		Version: "HTTP/1.1", "HTTP/1.0"
+	- Request line header
+		# Example: 	Host: www.example.com
+					User-Agent: chrome
+		Host: A web server could be hosting multiple names
+		User-Agent: What type of machine is making the request
+
+	- Response Status line
+		# Example:	HTTP/1.1 200 OK
+		Status code: 200, 404, etc.
+		Reason phrase: English description of the status code
+		Common status codes:
+			200		OK				(success)
+			302		Found 			(document is located somewhere else)
+			404		Not Found 		(document wasn't found)
+			500		Server Error	(server wasn't able to handle the request)
+	- Status line headers
+		# Example:	Date: Tue Mar 2012 04:33:33 GMT
+					Server: Apache /2.2.3
+					Content-Type: text/html;
+					Content-Length: 1539
+		Server: Similar to "User-Agent" header for Request. Name of the server
+		Content-Type: What kind of document is being returned
+		Content-Length: Not strictly required
+
+4. Servers
+	- Type of responses: Static & Dynamic
+		Static: Pre-written file (retrieved from the hard drive, etc.)
+		Dynamic: Made on the fly (web application)
+	- Web application
