@@ -1,0 +1,26 @@
+[Templates] A library to build complicated strings(e.g. HTML)
+
+jinja2 (built into GAE) jinja.pocoo.org
+
+- Variable substitution
+	# Parameter passed to .render() is string = "This is a string"
+	{{ string }}		# Prints "This is a string"
+- Statement syntax
+	{% if name == "steve" %}
+		Hello, Steve!
+	{% else %}
+		who are you?
+	{% end if %}
+- For loop syntax
+	{% for statement %}
+	{% endfor %}
+
+[Tips for HTML templates]
+- Automatically escape variables
+- Minimize code in templates
+- Minimize HTML in code
+
+[Template Inheritance]
+{% extends "base.html" %}
+{% block content %}
+{% endblock %}

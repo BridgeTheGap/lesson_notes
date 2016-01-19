@@ -2,7 +2,7 @@ HTML Forms
 
 1. Form
 	Attributes
-	- action="URL": where the data should be sent
+	- action="URL": the URL to be sent as a parameter for the query
 
 2. Input
 	Attributes
@@ -17,6 +17,7 @@ HTML Forms
 
 3. Label
 	By nesting input in the "Label" tag, a label is added on the left side of the input element
+	(Seems to be commonly used with radio buttons)
 
 4. Select
 	- name="value"

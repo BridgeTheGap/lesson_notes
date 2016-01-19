@@ -1,0 +1,10 @@
+GET vs. POST
+
+GET									POST
+- parameters in URL					- parameters in body
+- used for fetching documents		- used for updating data
+- maximum URL length				- no max length
+- okay to cache						- not okay to cache
+- shouldn't change the server		- okay to change the server
+
+

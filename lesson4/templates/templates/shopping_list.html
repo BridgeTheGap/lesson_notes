@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form>
+	<h2>Add a Food</h2>
+	<input type="text" name="food">
+	<button>Add</button>
+	{% for food in food_list %}
+		{% if food %}
+			<input type="hidden" name="food" value="{{ food }}">
+		{% endif %}
+	{% endfor %}
+</form>
+<h2>Shopping List&nbsp;<button onclick="location.href='/'">Reset</button></h2>
+{% if food_list %}
+	<ul>
+		{% for food in food_list %}
+			{% if food %}
+				<li>{{ food }}</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+{% endif %}
+<br>
+<form action="fizzbuzz">
+	<label>Choose number:
+		<input name="n">
+	</label>
+	<button>Fizzbuzz</button>
+</form>
+
+{% endblock %}
