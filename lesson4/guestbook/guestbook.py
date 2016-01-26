@@ -68,7 +68,8 @@ class MainPage(webapp2.RequestHandler):
         # query.
         # [START query]
         greetings_query = Greeting.query(
-            ancestor=guestbook_key(guestbook_name)).order(-Greeting.date)
+            ancestor=guestbook_key(guestbook_name)).order(Greeting.date)
+
         greetings = greetings_query.fetch(10)
         # [END query]
 
@@ -83,13 +84,21 @@ class MainPage(webapp2.RequestHandler):
                 self.response.write('An anonymous person wrote:')
             self.response.write('<blockquote>%s</blockquote>' %
                                 cgi.escape(greeting.content))
-            # Use POST to delete entry
-            self.response.write("""<form action='delete' method='post'>
+            # Use POST to edit & delete entry
+            self.response.write("""
+                                <div style="display: flex;">
+                                <form action="edit" method="post">
+                                <input type="hidden" name="key" value="%s">
+                                <input type="submit" value="Edit">
+                                </form>
+                                <form action='delete' method='post'>
                                 <input type="hidden" name="key" value="%s">
                                 <input type="hidden" name="guestbook_name" value="%s">
                                 <input type="submit" value="Delete">
                                 </form>
-                                """ % (greeting.key.urlsafe(), guestbook_name))
+                                </div>
+                                <hr color="#CFD8DC">
+                                """ % (greeting.key.urlsafe(), greeting.key.urlsafe(), guestbook_name))
 
         if user:
             url = users.create_logout_url(self.request.uri)
@@ -104,6 +113,32 @@ class MainPage(webapp2.RequestHandler):
         self.response.write(MAIN_PAGE_FOOTER_TEMPLATE %
                             (sign_query_params, cgi.escape(guestbook_name),
                              url, url_linktext))
+    def post(self):
+        self.response.write('<html><body>')
+        guestbook_name = self.request.get('guestbook_name',
+                                          DEFAULT_GUESTBOOK_NAME)
+        greetings_query = Greeting.query(
+            ancestor=guestbook_key(guestbook_name)).order(Greeting.date)
+        greetings = greetings_query.fetch()
+        key = self.request.get("key")
+        
+        user = users.get_current_user()
+        for greeting in greetings:
+            if greeting.key.urlsafe() == key:
+                self.response.write("""
+                                    <form action="/sign?%s" method="post">
+                                    <div><textarea name="content" rows="3" cols="60">%s</textarea></div>
+                                    <input type="submit" value="Finish">
+                                    <input type="hidden" name="edit" value="1">
+                                    <input type="hidden" name="key" value="%s">
+                                    </form>
+                                    <form action="/" method="get">
+                                    <input type="hidden" name="guestbook_name" value="%s">
+                                    <input type="submit" value="Cancel">
+                                    </form>
+                                    """ % (urllib.urlencode({"guestbook_name": guestbook_name}), greeting.content,
+                                        key, guestbook_name))
+
 # [END main_page]
 
 # [START guestbook]
@@ -116,7 +151,13 @@ class Guestbook(webapp2.RequestHandler):
         # ~1/second.
         guestbook_name = self.request.get('guestbook_name',
                                           DEFAULT_GUESTBOOK_NAME)
-        greeting = Greeting(parent=guestbook_key(guestbook_name))
+        edit = self.request.get("edit")
+        
+        greeting = None
+        if bool(edit):
+            greeting = ndb.Key(urlsafe=self.request.get("key")).get()
+        else:
+            greeting = Greeting(parent=guestbook_key(guestbook_name))
 
         if users.get_current_user():
             greeting.author = Author(
@@ -139,6 +180,7 @@ class Delete(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
+    ('/edit', MainPage),
     ('/sign', Guestbook),
     ('/delete', Delete),
 ], debug=True)
