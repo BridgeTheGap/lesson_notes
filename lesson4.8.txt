@@ -1,0 +1,54 @@
+[Databases]
+
+1. Tables (similar to Core Data)
+	- Comprises columns and rows.
+	- Columns are the type of data stored (Definition of the type of data).
+	- Rows are an entry of that data.
+
+2. Types of databases
+	- Relational(SQL Tables):
+		- PostgreSQL
+		- MySQL
+		- SQLite
+		- Oracle
+	- GAE Datastore
+	- Dynamo (by Amazon)
+	- NoSQL
+		- Mongo
+		- Couch
+
+3. SQL (Structured Query Language)
+	- A language for expressing queries
+	- Invented in the 1970s
+	- Example:
+		SELECT * FROM links WHERE id = 5;
+		"SELECT *"		Fetch data from all columns
+		"FROM links"	Which table to fetch from
+		"WHERE id = 5"	Constraints (which rows to return)
+
+4. Tables, Indexes, and Trees
+	- Table: "CREATE TABLE table_name FROM (column1 type1, column2 type2, ...)"
+	- Inserting rows: "INSERT INTO table_name VALUES (value1, value2, ...)"
+
+	- Index: "CREATE INDEX index_name ON table_name(column)
+	- Looking up a table takes longer than looking up an index (hashtable)
+
+5. ACID
+	- Atomicity: all parts of a transaction succeed or fail together
+	- Consistency: the database will aways be consistent
+	- Isolation: no transaction can interfere with another's
+	- Durability: once the transaction is committed, it won't be lost
+
+	# Examples of failure to achieve ACID in Monetor
+	- Atomicity: Money is withdrawn from, but not deposited to
+	- Consistency: Same transaction sometimes fails
+	- Durabiity: Transaction data is lost
+
+
+6. GAE Datastore
+	- Entities
+		- similar to tables
+		- columns are not fixed
+		- all have an ID field (manual/auto)
+		- parents/ancestors
+	- For further information on GAE Datastore, refer to lesson4/guestbook
